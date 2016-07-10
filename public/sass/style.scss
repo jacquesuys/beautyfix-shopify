@@ -14,9 +14,13 @@ $bp-large-2 : 54.5em;
 $bp-xl : 60em;
 $bp-xl-2 : 67em;
 
+/* Padding */
 $pad: 15px;
 $pad-hero-sm: 85px;
 $pad-hero-lg: 185px;
+
+/* Color */
+$gold: rgb(193, 180, 151);
 
 /*============================================================================
   Variable Queries Strings
@@ -34,7 +38,7 @@ $desktop-only: "all and (min-width: $bp-large)";
 }
 
 @function col($divisor) {
-  @return (100 / $divisor) * 1%;
+  @return ($divisor / 12) * 100%;
 }
 
 * {
@@ -44,6 +48,12 @@ $desktop-only: "all and (min-width: $bp-large)";
 body {
   font-size: 16px;
   background-color: #ccc;
+
+  /* 
+    TODO: Replace with:
+    http://www.fontsquirrel.com/fonts/TeX-Gyre-Adventor
+  */
+  font-family: 'Futura', 'Avenir LT Std', Helvetica, Arial, sans-serif;
 
   /* For sticky nav */
   padding-top: $pad-hero-sm;
@@ -57,9 +67,48 @@ body {
 a {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.5);
+}
+
+/* Headings */
+@for $i from 1 to 5 {
+  h#{$i} {
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+}
+
+button {
+  @media #{$desktop-only} {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.v-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+%btn {
+  text-transform: uppercase;
+  padding: $pad;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  border: none;
+}
+
+.btn-gold {
+  @extend %btn;
+  background-color: $gold;
+  color: #fff;
+  line-height: 1rem;
 
   &:hover {
-    text-decoration: underline;
+    background-color: ligthen($gold, 30%);
   }
 }
 
@@ -75,23 +124,36 @@ ul {
 /*============================================================================
   Grid System
 ==============================================================================*/
-.col-12 {
-  width: 100%;
-  float: left;
-  @include clearfix;
+.col-3 {
+  @media #{$desktop-only} {
+    width: col(4);
+    float: left;
+  }
 }
 
 .col-4 {
   @media #{$desktop-only} {
     width: col(3);
     float: left;
-    @include clearfix;
   }
+}
+
+.col-6 {
+  @media #{$desktop-only} {
+    width: col(2);
+    float: left;
+  }
+}
+
+.col-12 {
+  width: 100%;
+  float: left;
 }
 
 .container {
   margin: 0 auto;
   padding: $pad;
+  height: 100%;
 }
 
 header {
@@ -120,6 +182,12 @@ header {
 
 .menu-show {
   float: left;
+  top: 50%;
+  transform: translateY(50%);
+
+  span {
+    font-size: 0.75rem;
+  }
 
   @media #{$desktop-only} {
     display: none;
@@ -134,10 +202,13 @@ header {
 
 .cart {
   float: right;
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
 }
 
 /*============================================================================
-  Side Nav, for devices based on:
+  Side Nav, for devices only, based on:
   https://github.com/GoogleChrome/ui-element-samples/blob/gh-pages/side-nav/styles.css
 ==============================================================================*/
 @media #{$device-only} {
@@ -197,6 +268,27 @@ header {
   .side-nav--visible .side-nav__container {
     transform: none;
   }
+
+  ul {
+    margin: 0;
+  }
+
+  .menu-hide,
+  .back-to--Top,
+  .newsletter,
+  li {
+    line-height: 2rem;
+    padding: 5px 0;
+  }
+
+  header {
+
+    .menu-hide,
+    li {
+      border-bottom: solid 1px #ccc;
+      padding: 5px $pad;
+    }
+  }
 }
 
 /*============================================================================
@@ -208,19 +300,41 @@ header {
 
     li {
       display: inline;
+
+      a:hover {
+        color: $gold;
+      }
+    }
+
+    .nav__container {
+      li {
+        padding: $pad;
+      }
     }
 
     .social__container {
       position: absolute;
       top: $pad;
       left: $pad;
+
+      @media #{$desktop-only} {
+        span {
+          display: none;
+        }
+      }
     }
   }
+}
+
+.product .container,
+.hero .container {
+  text-align: center;
 }
 
 .hero {
   position: absolute;
   top: $pad-hero-sm;
+  color: #fff;
   left: 0;
   right: 0;
   bottom: 0;
@@ -228,12 +342,13 @@ header {
   z-index: 1;
   background: url('../img/hero.jpg') fixed no-repeat;
 
-  @media #{$desktop-only} {
-    top: $pad-hero-lg;
+  .heading {
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
 
-  .container {
-    text-align: center;
+  @media #{$desktop-only} {
+    top: $pad-hero-lg;
   }
 }
 
@@ -248,16 +363,98 @@ header {
 .product {
   background-color: #fff;
   padding: 15px;
-  height: 1000px;
+  height: 500px;
 
   .container {
     background-color: #e7e7e7;
   }
 }
 
+.blog-feed {
+  .container,
+  .split {
+    @include clearfix;
+  }
+
+  .split article{
+    width: col(6);
+    float: left;
+  }
+}
+
 footer {
+  background: rgba(0, 0, 0, 0.75);
+  color: $gold;
+
+  .container {
+    @include clearfix;
+  }
+
+  a {
+    color: $gold;
+  }
+
+  li {
+    border-bottom: solid 1px $gold;
+  }
+
   h4 {
     margin: 0;
+  }
+
+  .col-3 {
+    margin-bottom: $pad;
+  }
+
+  .newsletter div {
+    border-bottom: solid 1px $gold;
+    @include clearfix;
+
+    input {
+      float: left;
+      width: col(9);
+      line-height: 1.5rem;
+      padding: 5px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: none;
+      color: $gold;
+    }
+
+    button {
+      float: left;
+      width: col(3);
+      padding: 8px;
+      height: 35px;
+    }
+  }
+
+  .back-to--Top {
+    text-align: center;
+    width: 100%;
+  }
+
+  @media #{$desktop-only} {
+    position: relative;
+
+    .col-3 {
+      padding: $pad;
+    }
+
+    .newsletter div {
+      input {
+        width: col(8);
+      }
+
+      button {
+        width: col(4);
+      }
+    }
+
+    .back-to--Top {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
 }
 

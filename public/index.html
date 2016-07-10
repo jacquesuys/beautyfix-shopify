@@ -6,13 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Beautyfix</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 
 <body>
 	<header>
     <div class="container">
-      <span class="menu-show">Menu</span>
-      <span class="cart">Cart</span>
+      <span class="menu-show">
+        <i class="fa fa-bars"></i>
+        <span>Menu</span>
+      </span>
+      <span class="cart">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="count">(1)</span>
+      </span>
 
       <h1>
         <a href="#" class="logo">
@@ -22,18 +29,35 @@
 
       <aside class="side-nav">
         <nav class="side-nav__container">
-        <button class="menu-hide">Close</button>
-          <ul>
-            <li><a href="#" title="Link 1">Link 1</a></li>
-            <li><a href="#" title="Link 2">Link 2</a></li>
-            <li><a href="#" title="Link 3">Link 3</a></li>
-            <li><a href="#" title="Link 4">Link 4</a></li>
+          <button class="menu-hide btn-gold">Close <i class="fa fa-times"></i></button>
+
+          <ul class="nav__container">
+            <li><a href="#" title="Home">Home</a></li>
+            <li><a href="#" title="About Us">About Us</a></li>
+            <li><a href="#" title="Product">Product</a></li>
+            <li><a href="#" title="Stockist">Stockist</a></li>
+            <li><a href="#" title="Contact Us">Contact Us</a></li>
           </ul>
+
           <ul class="social__container">
-            <li><a href="#" title="Social 1">Social 1</a></li>
-            <li><a href="#" title="Social 2">Social 2</a></li>
-            <li><a href="#" title="Social 3">Social 3</a></li>
-            <li><a href="#" title="Social 4">Social 4</a></li>
+            <li>
+              <a href="#" title="Social 1">
+                <i class="fa fa-facebook-square"></i>
+                <span>Social 1</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="Social 2">
+                <i class="fa fa-twitter-square"></i>
+                <span>Social 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="Social 3">
+                <i class="fa fa-instagram"></i>
+                <span>Social 3</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -42,20 +66,25 @@
 
   <section class="hero">
     <div class="container">
-      <h2>this a hero item</h2>
-      <button>This some button</button>
+      <div class="v-center">
+        <h2 class="heading">this a hero item</h2>
+        <button class="btn-gold">This some button</button>
+      </div>
     </div>
   </section>
 
   <section class="product">
     <div class="container">
-      this is a product
+      <div class="v-center">
+        <h2>this is a product</h2>
+        <button class="btn-gold">This some button</button>
+      </div>
     </div>
   </section>
 
   <section class="blog-feed">
     <div class="container">
-      <div class="col-4">
+      <div class="col-3 split">
         <article>
           <h3>one</h3>
         </article>
@@ -64,13 +93,13 @@
         </article>
       </div>
 
-      <div class="col-4">
+      <div class="col-3">
         <article>
           <h3>three</h3>
         </article>
       </div>
       
-      <div class="col-4">
+      <div class="col-3 split">
         <article>
           <h3>four</h3>
         </article>
@@ -84,15 +113,19 @@
   <footer>
     <div class="container">
       <div class="col-12">
-        <button class="back-to--Top">Back to top</button>
+        <button class="back-to--Top btn-gold">Back to top <i class="fa fa-arrow-up"></i></button>
       </div>
-
-      <form class="col-4">
-        <input type="text" name="newsletter">
-        <button>Signup</button>
+    </div>
+    <div class="container">
+      <form class="col-3 newsletter">
+        <h4>Newsletter</h4>
+        <div>
+          <input type="text" name="newsletter" placeholder="Email Address">
+          <button class="btn-gold">Signup</button>
+        </div>
       </form>
 
-      <nav class="col-4">
+      <nav class="col-3">
         <h4>Navigation</h4>
         <ul>
           <li><a href="#" title="Link 1">Link 1</a></li>
@@ -102,16 +135,29 @@
         </ul>
       </nav>
 
-      <nav class="col-4">
+      <nav class="col-3">
         <h4>Follow Us On</h4>
         <ul class="">
-          <li><a href="#" title="Social 1">Social 1</a></li>
-          <li><a href="#" title="Social 2">Social 2</a></li>
-          <li><a href="#" title="Social 3">Social 3</a></li>
-          <li><a href="#" title="Social 4">Social 4</a></li>
+          <li>
+              <a href="#" title="Social 1">
+                <i class="fa fa-facebook-square"></i>
+                <span>Social 1</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="Social 2">
+                <i class="fa fa-twitter-square"></i>
+                <span>Social 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="Social 3">
+                <i class="fa fa-instagram"></i>
+                <span>Social 3</span>
+              </a>
+            </li>
         </ul>
       </nav>
-
     </div>
   </footer>
 
